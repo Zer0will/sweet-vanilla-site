@@ -5,13 +5,15 @@ Responsive single-page bakery website for Diana / Sweet Vanilla, built from the 
 ## Included
 
 - Spanish-first mobile landing page
-- Menu, pricing, specials, gallery, policies, FAQ, and contact/pickup sections
+- Real cropped product photos from Sweet Vanilla Instagram screenshots
+- Menu, pricing, specials, gallery, policies, and contact/pickup sections
 - Seven-step guided order flow
-- Live summary, estimated total, and 50% deposit estimate
+- Live summary, estimated total, and 50% deposit note
 - Weekend-only date validation with 4-day minimum notice
-- Mock capacity config: max 5 orders/day via `bookedDates` in `script.js`
+- Mock capacity config: max 5 orders/day via `bookedDates` in `index.html`
 - Max 3 inspiration images selected client-side
 - WhatsApp handoff to `206-571-6064` with a structured message
+- Supabase-ready inspiration photo upload through Vercel API route: `api/upload.js`
 
 ## Run locally
 
@@ -23,11 +25,28 @@ python3 -m http.server 8080
 
 Then visit `http://localhost:8080`.
 
+## Supabase photo upload setup
+
+The order form is wired to upload customer inspiration photos to Supabase Storage and insert public links in the WhatsApp message. Configure these Vercel environment variables:
+
+```bash
+SUPABASE_URL=https://YOUR_PROJECT.supabase.co
+SUPABASE_SERVICE_ROLE_KEY=YOUR_SERVICE_ROLE_KEY
+SUPABASE_BUCKET=order-inspiration
+```
+
+Bucket requirement:
+
+- Create a Storage bucket named `order-inspiration`.
+- Make the bucket public if you want WhatsApp links to open without auth.
+- Keep `SUPABASE_SERVICE_ROLE_KEY` server-side only; never paste it into `index.html`.
+
+If Supabase env vars are missing, the site gracefully falls back to telling customers to attach photos manually in WhatsApp.
+
 ## Before launch
 
 - Confirm exact pickup location or pickup-area wording.
 - Confirm payment methods for the 50% deposit.
-- Replace mock `bookedDates` in `script.js` with Airtable/Google Sheets/DB-backed availability if Diana wants true no-overbooking enforcement.
+- Replace mock `bookedDates` with Airtable/Google Sheets/DB-backed availability if Diana wants true no-overbooking enforcement.
 - Decide whether form-submitted dates should reserve provisional capacity or only count after Diana confirms.
-- WhatsApp deep links cannot attach uploaded images directly; current version lists selected file names and prompts customers to send photos in the WhatsApp thread. For real image links, add storage/upload backend in phase 2 or a form provider.
-- Replace/add higher-resolution gallery images when available.
+- Replace/add higher-resolution original photos when available; current gallery crops are taken from Instagram screenshots.

@@ -17,6 +17,7 @@
   body{font-family:'Karla',sans-serif;background:var(--cream);color:var(--ink);line-height:1.6}
   h1,h2,h3{font-family:'Fraunces',serif}
   img{max-width:100%;display:block}
+  picture{display:block}
 
   nav{position:sticky;top:0;background:rgba(252,250,244,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--sage-light);z-index:50;padding:13px 20px;display:flex;justify-content:space-between;align-items:center}
   .logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--pine)}
@@ -28,7 +29,12 @@
   .nav-cta{background:var(--pine);color:#fff !important;padding:8px 18px;border-radius:999px}
   @media(max-width:680px){nav ul li:not(:last-child){display:none}}
 
-  .hero{text-align:center;padding:70px 22px 56px;background:radial-gradient(ellipse 60% 50% at 50% 0%, var(--sage-light) 0%, transparent 70%)}
+  .hero{padding:70px 22px 56px;background:radial-gradient(ellipse 60% 50% at 50% 0%, var(--sage-light) 0%, transparent 70%)}
+  .hero-inner{max-width:1060px;margin:0 auto;display:grid;grid-template-columns:1.05fr .95fr;gap:34px;align-items:center}
+  .hero-copy{text-align:left}
+  .hero-photo{position:relative;border-radius:34px;overflow:hidden;box-shadow:0 24px 70px rgba(62,90,60,.22);border:8px solid #fff;background:#fff;transform:rotate(1.2deg)}
+  .hero-photo img{width:100%;height:min(62vw,560px);object-fit:cover}
+  .hero-photo::after{content:'Pasteles personalizados';position:absolute;left:18px;bottom:18px;background:rgba(252,250,244,.92);color:var(--pine);padding:9px 14px;border-radius:999px;font-weight:700;font-size:.82rem;box-shadow:0 8px 24px rgba(0,0,0,.12)}
   .eyebrow{letter-spacing:.18em;text-transform:uppercase;font-size:.72rem;color:var(--caramel);font-weight:700}
   .hero h1{font-size:clamp(2.3rem,6vw,3.8rem);font-weight:300;color:var(--pine);margin:14px 0 6px;line-height:1.12}
   .hero h1 em{font-style:italic;font-weight:400}
@@ -48,7 +54,9 @@
   .menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
   .card{background:#fff;border:1px solid var(--sage-light);border-radius:18px;overflow:hidden;transition:box-shadow .2s}
   .card:hover{box-shadow:0 10px 30px rgba(62,90,60,.12)}
-  .card-img{height:150px;background:var(--sage-light);display:flex;align-items:center;justify-content:center;color:var(--pine);font-family:'Fraunces',serif;font-style:italic;font-size:.85rem;text-align:center;padding:10px}
+  .card-img{height:178px;background:var(--sage-light);overflow:hidden}
+  .card-img img{width:100%;height:100%;object-fit:cover;transition:transform .25s}
+  .card:hover .card-img img{transform:scale(1.04)}
   .card-body{padding:18px 20px 20px}
   .card-body h3{font-size:1.12rem;font-weight:600;color:var(--pine)}
   .card-body p{font-size:.86rem;color:#5a6b58;margin:6px 0 10px}
@@ -62,7 +70,10 @@
   .gallery-band{background:var(--pine);padding:60px 22px}
   .gallery-band .section-head h2,.gallery-band .section-head p{color:#fff}
   .gal-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;max-width:1060px;margin:0 auto}
-  .gal-item{aspect-ratio:1;background:rgba(255,255,255,.12);border:1px dashed rgba(255,255,255,.35);border-radius:14px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.85);font-size:.78rem;text-align:center;padding:10px;font-style:italic}
+  .gal-item{position:relative;aspect-ratio:1;background:rgba(255,255,255,.12);border-radius:18px;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.18)}
+  .gal-item img{width:100%;height:100%;object-fit:cover;transition:transform .25s}
+  .gal-item:hover img{transform:scale(1.05)}
+  .gal-item span{position:absolute;left:10px;right:10px;bottom:10px;background:rgba(252,250,244,.9);color:var(--pine);font-size:.76rem;font-weight:700;border-radius:999px;padding:7px 10px;text-align:center}
 
   /* ORDER FLOW */
   .order-wrap{background:#fff;border:1px solid var(--sage-light);border-radius:24px;padding:30px 22px;box-shadow:0 14px 40px rgba(62,90,60,.08);max-width:720px;margin:0 auto}
@@ -81,6 +92,8 @@
   .field label{display:block;font-weight:700;font-size:.85rem;margin-bottom:5px;color:var(--pine)}
   .field input,.field textarea,.field select{width:100%;padding:11px 13px;border:1.5px solid var(--sage-light);border-radius:12px;font-family:'Karla',sans-serif;font-size:.93rem;background:var(--cream)}
   .field input:focus,.field textarea:focus{outline:none;border-color:var(--pine)}
+  .upload-list{margin-top:8px;font-size:.78rem;color:#5a6b58}
+  .upload-list div{padding:5px 0;border-bottom:1px dashed var(--sage-light)}
   .notice{background:var(--sage-light);border-radius:12px;padding:12px 15px;font-size:.82rem;color:var(--pine);margin-top:14px}
   .notice strong{font-weight:700}
   .warn{background:#F6E8D8;color:#8a5a2a}
@@ -95,7 +108,8 @@
   .hidden{display:none !important}
 
   .pickup-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:center}
-  @media(max-width:720px){.pickup-grid{grid-template-columns:1fr}}
+  @media(max-width:860px){.hero-inner{grid-template-columns:1fr}.hero-copy{text-align:center}.hero-photo{max-width:520px;margin:0 auto}.hero-photo img{height:520px}}
+  @media(max-width:720px){.pickup-grid{grid-template-columns:1fr}.hero-photo img{height:420px}}
   .map-ph{aspect-ratio:4/3;background:var(--sage-light);border-radius:18px;display:flex;align-items:center;justify-content:center;color:var(--pine);font-style:italic;font-family:'Fraunces',serif;text-align:center;padding:16px}
   .pickup-grid h2{font-size:1.8rem;font-weight:400;color:var(--pine);margin-bottom:10px}
   .pickup-grid li{margin:8px 0 8px 18px;color:#4a5a48;font-size:.94rem}
@@ -126,12 +140,20 @@
 </nav>
 
 <header class="hero" id="top">
-  <div class="eyebrow">Repostería artesanal · Shoreline &amp; Lake Forest Park</div>
-  <h1>Hecho con amor,<br><em>al estilo Sweet Vanilla</em></h1>
-  <p>Pasteles tres leches, flan napolitano, churros con toppings y postres por docena — hechos por encargo, listos para tu ocasión especial.</p>
-  <a href="#ordenar" class="btn btn-primary">Ordena en línea</a>
-  <a href="#menu" class="btn btn-ghost">Ver menú</a>
-  <div class="hero-note">Solo pick up · Pedidos con 4 días de anticipación · Máx. 5 pedidos por día</div>
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <div class="eyebrow">Repostería artesanal · Shoreline &amp; Lake Forest Park</div>
+      <h1>Hecho con amor,<br><em>al estilo Sweet Vanilla</em></h1>
+      <p>Pasteles tres leches, flan napolitano, churros con toppings y postres por docena — hechos por encargo, listos para tu ocasión especial.</p>
+      <a href="#ordenar" class="btn btn-primary">Ordena en línea</a>
+      <a href="#menu" class="btn btn-ghost">Ver menú</a>
+      <div class="hero-note">Solo pick up · Pedidos con 4 días de anticipación · Máx. 5 pedidos por día</div>
+    </div>
+    <picture class="hero-photo">
+      <source srcset="assets/gallery/hero-black-gold-cake.webp" type="image/webp">
+      <img src="assets/gallery/hero-black-gold-cake.webp" alt="Pastel blanco y negro con topper dorado de Sweet Vanilla" loading="eager">
+    </picture>
+  </div>
 </header>
 
 <section id="menu">
@@ -140,19 +162,19 @@
     <p>Todos nuestros pasteles se hacen por encargo · 6" desde $80 · 8" desde $100 · Corazón 6" desde $85</p>
   </div>
   <div class="menu-grid">
-    <div class="card"><div class="card-img">[ foto: pastel tradicional ]</div><div class="card-body">
+    <div class="card"><div class="card-img"><img src="assets/gallery/marc-birthday-cake.webp" alt="Pastel tradicional personalizado Sweet Vanilla"></div><div class="card-body">
       <span class="tag">CLÁSICO</span><h3>Tradicional</h3>
       <p>Pastel de vainilla húmedo en tres leches al estilo Sweet Vanilla, relleno de dulce de leche.</p>
       <div class="price">+$5 relleno de coctel de frutas</div></div></div>
-    <div class="card"><div class="card-img">[ foto: strawberry creamcheese ]</div><div class="card-body">
+    <div class="card"><div class="card-img"><img src="assets/gallery/strawberries-cream-cup.webp" alt="Fresas con crema estilo Sweet Vanilla"></div><div class="card-body">
       <span class="tag">FAVORITO</span><h3>Strawberry Creamcheese</h3>
       <p>Tres leches relleno de fresas con crema y cream cheese.</p>
       <div class="price">Desde $80</div></div></div>
-    <div class="card"><div class="card-img">[ foto: chocolate deluxe ]</div><div class="card-body">
+    <div class="card"><div class="card-img"><img src="assets/gallery/sprinkle-birthday-cake.webp" alt="Pastel de chocolate personalizado con sprinkles"></div><div class="card-body">
       <span class="tag">ESPECIAL</span><h3>Chocolate Deluxe</h3>
       <p>Torta húmeda de chocolate semidulce con almíbar de cocoa, relleno de ganache de dulce de leche o de chocolate.</p>
       <div class="price">Desde $80</div></div></div>
-    <div class="card"><div class="card-img">[ foto: moca cookie crumble ]</div><div class="card-body">
+    <div class="card"><div class="card-img"><img src="assets/gallery/black-gold-cake.webp" alt="Pastel moca cookie crumble blanco y negro"></div><div class="card-body">
       <span class="tag">NUEVO</span><h3>Moca Cookie Crumble</h3>
       <p>Vainilla húmeda en moca, relleno de mousse de chocolate y crumbles de Oreo.</p>
       <div class="price">Desde $80</div></div></div>
@@ -187,12 +209,12 @@
     <p>Cada creación es única — síguenos en Instagram @sweet_vanilla2025</p>
   </div>
   <div class="gal-grid">
-    <div class="gal-item">pastel corazón verde con coronas</div>
-    <div class="gal-item">flan napolitano con fresas</div>
-    <div class="gal-item">mini flanes en domo</div>
-    <div class="gal-item">pastel tres leches con moños</div>
-    <div class="gal-item">crepa con Nutella y fresa</div>
-    <div class="gal-item">churros con toppings</div>
+    <figure class="gal-item"><img src="assets/gallery/black-gold-cake.webp" alt="Pastel blanco y negro con topper dorado"><span>Pastel personalizado</span></figure>
+    <figure class="gal-item"><img src="assets/gallery/strawberries-cream-cup.webp" alt="Fresas con crema en vaso"><span>Fresas con crema</span></figure>
+    <figure class="gal-item"><img src="assets/gallery/sweet-crepe.webp" alt="Crepa dulce con Nutella, fresas y banana"><span>Crepas dulces</span></figure>
+    <figure class="gal-item"><img src="assets/gallery/churros-menu.webp" alt="Churros con toppings y porciones de pastel"><span>Churros + porciones</span></figure>
+    <figure class="gal-item"><img src="assets/gallery/napolitano-flan-table.webp" alt="Mini flanes napolitanos en mesa de fiesta"><span>Mini flan</span></figure>
+    <figure class="gal-item"><img src="assets/gallery/boxed-sweet-crepe.webp" alt="Crepa dulce empacada para pick up"><span>Pick up listo</span></figure>
   </div>
 </div>
 
@@ -291,7 +313,11 @@
       <div class="field"><label>¿Para qué ocasión es?</label>
         <input id="ocasion" placeholder="Ej: cumpleaños, baby shower, aniversario">
       </div>
-      <div class="notice">📷 <strong>Fotos de inspiración:</strong> al enviar tu pedido por WhatsApp, adjunta tus fotos en el chat. Las imágenes se toman como inspiración para la elaboración del producto, no como garantía de una copia exacta.</div>
+      <div class="field"><label>Fotos de inspiración (opcional · máximo 3)</label>
+        <input id="inspoFiles" type="file" accept="image/*" multiple onchange="previewInspoFiles()">
+        <div class="upload-list" id="uploadList">Puedes subir hasta 3 imágenes. Si Supabase está configurado, se enviarán como links en WhatsApp.</div>
+      </div>
+      <div class="notice">📷 <strong>Fotos de inspiración:</strong> las imágenes se toman como inspiración para la elaboración del producto, no como garantía de una copia exacta.</div>
       <div style="text-align:center;margin-top:18px"><button class="btn btn-primary" onclick="goStep('s5')">Continuar →</button></div>
     </div>
 
@@ -384,7 +410,10 @@
 
 <script>
 const WA_NUMBER = "12065716064";
-const order = {type:null,item:null,base:0,qty:1,flavor:null,filling:null,deco:'',ocasion:'',date:null,name:'',phone:'',notes:'',extraCost:0};
+const SUPABASE_URL = window.SWEET_VANILLA_SUPABASE_URL || "";
+const SUPABASE_ANON_KEY = window.SWEET_VANILLA_SUPABASE_ANON_KEY || "";
+const SUPABASE_BUCKET = window.SWEET_VANILLA_SUPABASE_BUCKET || "order-inspiration";
+const order = {type:null,item:null,base:0,qty:1,flavor:null,filling:null,deco:'',ocasion:'',date:null,name:'',phone:'',notes:'',extraCost:0,photoLinks:[]};
 let history = ['s1'];
 
 function show(id){
@@ -488,15 +517,61 @@ function buildDates(){
 buildDates();
 
 function money(n){ return '$'+n; }
+function selectedInspoFiles(){ return Array.from(document.getElementById('inspoFiles')?.files || []).slice(0,3); }
+function previewInspoFiles(){
+  const input=document.getElementById('inspoFiles');
+  const list=document.getElementById('uploadList');
+  const files=Array.from(input.files || []);
+  if(files.length>3){ alert('Máximo 3 fotos de inspiración.'); input.value=''; list.textContent='Puedes subir hasta 3 imágenes.'; return; }
+  list.innerHTML = files.length ? files.map(f=>`<div>📷 ${f.name} · ${(f.size/1024/1024).toFixed(1)} MB</div>`).join('') : 'Puedes subir hasta 3 imágenes. Si Supabase está configurado, se enviarán como links en WhatsApp.';
+}
+async function uploadInspirationPhotos(){
+  const files=selectedInspoFiles();
+  if(!files.length) return [];
+
+  // Preferred production path: Vercel serverless API uploads with Supabase service role env vars.
+  try{
+    const form=new FormData();
+    files.forEach(file=>form.append('photos', file, file.name));
+    const apiRes=await fetch('/api/upload',{method:'POST',body:form});
+    if(apiRes.ok){
+      const data=await apiRes.json();
+      if(Array.isArray(data.links)) return data.links;
+    }
+  }catch(_err){ /* fall through to public-key fallback/manual attachment */ }
+
+  // Optional pure-static fallback if public Supabase anon settings are injected on window.
+  if(SUPABASE_URL && SUPABASE_ANON_KEY){
+    const stamp=Date.now();
+    const safe=s=>s.toLowerCase().replace(/[^a-z0-9._-]+/g,'-').slice(0,80);
+    const links=[];
+    for(let i=0;i<files.length;i++){
+      const file=files[i];
+      const path=`orders/${stamp}-${i+1}-${safe(file.name)}`;
+      const url=`${SUPABASE_URL.replace(/\/$/,'')}/storage/v1/object/${SUPABASE_BUCKET}/${path}`;
+      const res=await fetch(url,{method:'PUT',headers:{apikey:SUPABASE_ANON_KEY,Authorization:`Bearer ${SUPABASE_ANON_KEY}`,'Content-Type':file.type || 'application/octet-stream','x-upsert':'false'},body:file});
+      if(!res.ok){ throw new Error(`No se pudo subir ${file.name} a Supabase (${res.status})`); }
+      links.push(`${SUPABASE_URL.replace(/\/$/,'')}/storage/v1/object/public/${SUPABASE_BUCKET}/${path}`);
+    }
+    return links;
+  }
+
+  return files.map(f=>`Adjuntar manualmente en WhatsApp: ${f.name}`);
+}
 function calcTotal(){
   if(order.type==='churros') return order.base*order.qty + order.extraCost*order.qty;
   return order.base + order.extraCost;
 }
-function buildSummary(){
+async function buildSummary(){
   order.name=document.getElementById('cname').value.trim();
   order.phone=document.getElementById('cphone').value.trim();
   order.notes=document.getElementById('cnotes').value.trim();
   if(!order.name||!order.phone){ alert('Por favor escribe tu nombre y teléfono para continuar.'); return; }
+  const sendBtn=document.querySelector('#s6 .btn-primary');
+  if(sendBtn){ sendBtn.disabled=true; sendBtn.textContent='Subiendo fotos…'; }
+  try{ order.photoLinks = await uploadInspirationPhotos(); }
+  catch(err){ alert(err.message + '. Puedes intentar de nuevo o enviar las fotos manualmente por WhatsApp.'); if(sendBtn){ sendBtn.disabled=false; sendBtn.textContent='Ver resumen →'; } return; }
+  if(sendBtn){ sendBtn.disabled=false; sendBtn.textContent='Ver resumen →'; }
   order.deco=document.getElementById('deco')?document.getElementById('deco').value.trim():'';
   order.ocasion=document.getElementById('ocasion')?document.getElementById('ocasion').value.trim():'';
   const rows=[];
@@ -509,6 +584,7 @@ function buildSummary(){
   rows.push(['Cliente',order.name]);
   rows.push(['WhatsApp',order.phone]);
   if(order.notes) rows.push(['Notas',order.notes]);
+  if(order.photoLinks?.length) rows.push(['Fotos',order.photoLinks.map((l,i)=>l.startsWith('http')?`<a href="${l}" target="_blank">Foto ${i+1}</a>`:l).join('<br>')]);
   const total=calcTotal();
   let html=rows.map(r=>`<div class="row"><b>${r[0]}</b><span style="text-align:right;max-width:60%">${r[1]}</span></div>`).join('');
   html+=`<div class="row total-row"><b>Total estimado*</b><span>${money(total)}</span></div>`;
@@ -525,15 +601,17 @@ function buildSummary(){
   msg+=`Cliente: ${order.name}\n`;
   msg+=`Tel: ${order.phone}\n`;
   if(order.notes) msg+=`Notas: ${order.notes}\n`;
+  if(order.photoLinks?.length){ msg+=`Fotos de inspiración:\n${order.photoLinks.map((l,i)=>`${i+1}. ${l}`).join('\n')}\n`; }
   msg+=`Total estimado: ${money(calcTotal())}\n`;
-  msg+=`— Enviado desde el sitio web. Adjunto mis fotos de inspiración a continuación 📷`;
+  msg+= order.photoLinks?.some(l=>l.startsWith('http')) ? `— Enviado desde el sitio web con fotos de inspiración.` : `— Enviado desde el sitio web. Si mis fotos no aparecen como links, las adjunto a continuación 📷`;
   document.getElementById('wa-send').href=`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
   goStep('s7');
 }
 function resetOrder(){
-  Object.assign(order,{type:null,item:null,base:0,qty:1,flavor:null,filling:null,deco:'',ocasion:'',date:null,name:'',phone:'',notes:'',extraCost:0});
+  Object.assign(order,{type:null,item:null,base:0,qty:1,flavor:null,filling:null,deco:'',ocasion:'',date:null,name:'',phone:'',notes:'',extraCost:0,photoLinks:[]});
   document.querySelectorAll('.opt').forEach(o=>o.classList.remove('selected'));
   document.getElementById('chn').textContent='1';
+  const inspo=document.getElementById('inspoFiles'); if(inspo) inspo.value=''; previewInspoFiles();
   history=['s1']; show('s1'); buildDates();
 }
 </script>
