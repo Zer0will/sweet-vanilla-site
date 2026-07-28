@@ -1,279 +1,541 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Sweet Vanilla — pasteles personalizados, tres leches y postres artesanales en Shoreline y Lake Forest Park." />
-  <title>Sweet Vanilla | Pasteles personalizados</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sweet Vanilla — Repostería artesanal · Shoreline & Lake Forest Park</title>
+<meta name="description" content="Pasteles tres leches, flan napolitano, churros con toppings y más. Repostería artesanal por encargo en Shoreline y Lake Forest Park, WA. Ordena en línea.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,400&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sage:#AECBA5; --sage-light:#DCE9D6; --pine:#3E5A3C; --cream:#FCFAF4;
+    --caramel:#B97A3F; --ink:#2C3A2B; --white:#fff;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Karla',sans-serif;background:var(--cream);color:var(--ink);line-height:1.6}
+  h1,h2,h3{font-family:'Fraunces',serif}
+  img{max-width:100%;display:block}
+
+  nav{position:sticky;top:0;background:rgba(252,250,244,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--sage-light);z-index:50;padding:13px 20px;display:flex;justify-content:space-between;align-items:center}
+  .logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--pine)}
+  .logo-mark{width:36px;height:36px;border-radius:50%;background:var(--sage);display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Fraunces',serif;font-size:14px;border:2px solid #fff;box-shadow:0 0 0 1px var(--sage)}
+  .logo span{font-family:'Fraunces',serif;font-size:1.1rem;font-weight:600}
+  nav ul{display:flex;gap:20px;list-style:none;align-items:center}
+  nav ul a{text-decoration:none;color:var(--ink);font-size:.9rem;font-weight:500}
+  nav ul a:hover{color:var(--caramel)}
+  .nav-cta{background:var(--pine);color:#fff !important;padding:8px 18px;border-radius:999px}
+  @media(max-width:680px){nav ul li:not(:last-child){display:none}}
+
+  .hero{text-align:center;padding:70px 22px 56px;background:radial-gradient(ellipse 60% 50% at 50% 0%, var(--sage-light) 0%, transparent 70%)}
+  .eyebrow{letter-spacing:.18em;text-transform:uppercase;font-size:.72rem;color:var(--caramel);font-weight:700}
+  .hero h1{font-size:clamp(2.3rem,6vw,3.8rem);font-weight:300;color:var(--pine);margin:14px 0 6px;line-height:1.12}
+  .hero h1 em{font-style:italic;font-weight:400}
+  .hero p{max-width:520px;margin:14px auto 26px;color:#5a6b58}
+  .btn{display:inline-block;padding:13px 28px;border-radius:999px;text-decoration:none;font-weight:700;font-size:.93rem;transition:transform .15s;border:none;cursor:pointer;font-family:'Karla',sans-serif}
+  .btn:hover{transform:translateY(-2px)}
+  .btn-primary{background:var(--pine);color:#fff}
+  .btn-ghost{background:transparent;border:1.5px solid var(--pine);color:var(--pine);margin-left:8px}
+  .btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+  .hero-note{margin-top:16px;font-size:.83rem;color:#7d8b7b}
+
+  section{padding:60px 22px;max-width:1060px;margin:0 auto}
+  .section-head{text-align:center;margin-bottom:38px}
+  .section-head h2{font-size:clamp(1.7rem,4vw,2.2rem);font-weight:400;color:var(--pine)}
+  .section-head p{color:#5a6b58;margin-top:8px;font-size:.95rem}
+
+  .menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+  .card{background:#fff;border:1px solid var(--sage-light);border-radius:18px;overflow:hidden;transition:box-shadow .2s}
+  .card:hover{box-shadow:0 10px 30px rgba(62,90,60,.12)}
+  .card-img{height:150px;background:var(--sage-light);display:flex;align-items:center;justify-content:center;color:var(--pine);font-family:'Fraunces',serif;font-style:italic;font-size:.85rem;text-align:center;padding:10px}
+  .card-body{padding:18px 20px 20px}
+  .card-body h3{font-size:1.12rem;font-weight:600;color:var(--pine)}
+  .card-body p{font-size:.86rem;color:#5a6b58;margin:6px 0 10px}
+  .price{font-weight:700;color:var(--caramel);font-size:.93rem}
+  .tag{display:inline-block;background:var(--sage-light);color:var(--pine);font-size:.7rem;font-weight:700;padding:3px 10px;border-radius:999px;margin-bottom:8px;letter-spacing:.04em}
+  .price-table{width:100%;border-collapse:collapse;margin-top:26px;background:#fff;border-radius:16px;overflow:hidden;border:1px solid var(--sage-light)}
+  .price-table th{background:var(--pine);color:#fff;font-family:'Fraunces',serif;font-weight:400;padding:12px 16px;text-align:left;font-size:.95rem}
+  .price-table td{padding:11px 16px;border-top:1px solid var(--sage-light);font-size:.9rem}
+  .price-table td:last-child{text-align:right;font-weight:700;color:var(--caramel);white-space:nowrap}
+
+  .gallery-band{background:var(--pine);padding:60px 22px}
+  .gallery-band .section-head h2,.gallery-band .section-head p{color:#fff}
+  .gal-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;max-width:1060px;margin:0 auto}
+  .gal-item{aspect-ratio:1;background:rgba(255,255,255,.12);border:1px dashed rgba(255,255,255,.35);border-radius:14px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.85);font-size:.78rem;text-align:center;padding:10px;font-style:italic}
+
+  /* ORDER FLOW */
+  .order-wrap{background:#fff;border:1px solid var(--sage-light);border-radius:24px;padding:30px 22px;box-shadow:0 14px 40px rgba(62,90,60,.08);max-width:720px;margin:0 auto}
+  .progress{height:5px;background:var(--sage-light);border-radius:99px;margin-bottom:26px;overflow:hidden}
+  .progress-fill{height:100%;background:var(--pine);border-radius:99px;transition:width .3s;width:14%}
+  .step-title{font-family:'Fraunces',serif;font-size:1.35rem;color:var(--pine);text-align:center;margin-bottom:6px}
+  .step-sub{text-align:center;color:#7d8b7b;font-size:.86rem;margin-bottom:22px}
+  .options{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:11px;margin-bottom:8px}
+  .opt{border:1.5px solid var(--sage-light);border-radius:14px;padding:15px 12px;text-align:center;cursor:pointer;transition:all .15s;background:var(--cream)}
+  .opt:hover{border-color:var(--sage)}
+  .opt.selected{border-color:var(--pine);background:var(--sage-light)}
+  .opt-name{font-weight:700;font-size:.9rem;color:var(--pine)}
+  .opt-sub{font-size:.76rem;color:#7d8b7b;margin-top:3px}
+  .order-nav{display:flex;justify-content:space-between;margin-top:24px;gap:10px}
+  .field{margin-bottom:14px}
+  .field label{display:block;font-weight:700;font-size:.85rem;margin-bottom:5px;color:var(--pine)}
+  .field input,.field textarea,.field select{width:100%;padding:11px 13px;border:1.5px solid var(--sage-light);border-radius:12px;font-family:'Karla',sans-serif;font-size:.93rem;background:var(--cream)}
+  .field input:focus,.field textarea:focus{outline:none;border-color:var(--pine)}
+  .notice{background:var(--sage-light);border-radius:12px;padding:12px 15px;font-size:.82rem;color:var(--pine);margin-top:14px}
+  .notice strong{font-weight:700}
+  .warn{background:#F6E8D8;color:#8a5a2a}
+  .summary-box{background:var(--cream);border:1.5px solid var(--sage-light);border-radius:16px;padding:18px 20px;font-size:.92rem}
+  .summary-box .row{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px dashed var(--sage-light)}
+  .summary-box .row:last-child{border-bottom:none}
+  .summary-box .row b{color:var(--pine)}
+  .total-row{font-size:1.05rem;font-weight:700;color:var(--caramel)}
+  .qty-ctrl{display:flex;align-items:center;justify-content:center;gap:16px;margin:10px 0}
+  .qty-btn{width:42px;height:42px;border-radius:50%;border:1.5px solid var(--pine);background:#fff;color:var(--pine);font-size:1.3rem;cursor:pointer;font-weight:700}
+  .qty-num{font-family:'Fraunces',serif;font-size:1.6rem;color:var(--pine);min-width:40px;text-align:center}
+  .hidden{display:none !important}
+
+  .pickup-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:center}
+  @media(max-width:720px){.pickup-grid{grid-template-columns:1fr}}
+  .map-ph{aspect-ratio:4/3;background:var(--sage-light);border-radius:18px;display:flex;align-items:center;justify-content:center;color:var(--pine);font-style:italic;font-family:'Fraunces',serif;text-align:center;padding:16px}
+  .pickup-grid h2{font-size:1.8rem;font-weight:400;color:var(--pine);margin-bottom:10px}
+  .pickup-grid li{margin:8px 0 8px 18px;color:#4a5a48;font-size:.94rem}
+
+  .policies{background:#fff;border:1px solid var(--sage-light);border-radius:20px;padding:28px 26px}
+  .policies h3{color:var(--caramel);font-size:1.05rem;margin:18px 0 6px;font-weight:600}
+  .policies h3:first-child{margin-top:0}
+  .policies li{margin:5px 0 5px 18px;font-size:.9rem;color:#4a5a48}
+
+  footer{background:var(--pine);color:#dce9d6;text-align:center;padding:42px 22px;margin-top:50px}
+  footer .logo-mark{margin:0 auto 12px;background:#fff;color:var(--pine)}
+  footer a{color:#fff;font-weight:700;text-decoration:none}
+  .wa-btn{display:inline-block;margin-top:14px;background:#fff;color:var(--pine);padding:11px 26px;border-radius:999px;font-weight:700;text-decoration:none}
+  footer .fine{font-size:.76rem;opacity:.7;margin-top:16px}
+</style>
 </head>
 <body>
-  <header class="site-header">
-    <a class="brand" href="#inicio" aria-label="Sweet Vanilla inicio">
-      <img src="assets/logo.jpeg" alt="Logo de Sweet Vanilla" />
-      <span>Sweet Vanilla</span>
-    </a>
-    <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
-    <nav class="nav-links" aria-label="Navegación principal">
-      <a href="#menu">Menú</a>
-      <a href="#galeria">Galería</a>
-      <a href="#politicas">Políticas</a>
-      <a href="#contacto">Contacto</a>
-      <a href="#faq">Preguntas</a>
-      <a class="button button-small" href="#ordenar">Ordenar</a>
-    </nav>
-  </header>
 
-  <main>
-    <section class="hero" id="inicio">
-      <div class="hero-copy reveal">
-        <span class="eyebrow">Repostería artesanal · Shoreline, WA</span>
-        <h1>Pasteles hechos para celebrar <em>tu momento.</em></h1>
-        <p>Diseños personalizados, sabores irresistibles y un proceso de pedido simple por WhatsApp.</p>
-        <div class="hero-actions">
-          <a class="button" href="#ordenar">Ordenar ahora</a>
-          <a class="button button-ghost" href="#menu">Ver menú</a>
+<nav>
+  <a class="logo" href="#top"><div class="logo-mark">Sv</div><span>Sweet Vanilla</span></a>
+  <ul>
+    <li><a href="#menu">Menú</a></li>
+    <li><a href="#galeria">Galería</a></li>
+    <li><a href="#politicas">Políticas</a></li>
+    <li><a href="#recoger">Pick up</a></li>
+    <li><a href="#ordenar" class="nav-cta">Ordenar</a></li>
+  </ul>
+</nav>
+
+<header class="hero" id="top">
+  <div class="eyebrow">Repostería artesanal · Shoreline &amp; Lake Forest Park</div>
+  <h1>Hecho con amor,<br><em>al estilo Sweet Vanilla</em></h1>
+  <p>Pasteles tres leches, flan napolitano, churros con toppings y postres por docena — hechos por encargo, listos para tu ocasión especial.</p>
+  <a href="#ordenar" class="btn btn-primary">Ordena en línea</a>
+  <a href="#menu" class="btn btn-ghost">Ver menú</a>
+  <div class="hero-note">Solo pick up · Pedidos con 4 días de anticipación · Máx. 5 pedidos por día</div>
+</header>
+
+<section id="menu">
+  <div class="section-head">
+    <h2>Sabores de pastel</h2>
+    <p>Todos nuestros pasteles se hacen por encargo · 6" desde $80 · 8" desde $100 · Corazón 6" desde $85</p>
+  </div>
+  <div class="menu-grid">
+    <div class="card"><div class="card-img">[ foto: pastel tradicional ]</div><div class="card-body">
+      <span class="tag">CLÁSICO</span><h3>Tradicional</h3>
+      <p>Pastel de vainilla húmedo en tres leches al estilo Sweet Vanilla, relleno de dulce de leche.</p>
+      <div class="price">+$5 relleno de coctel de frutas</div></div></div>
+    <div class="card"><div class="card-img">[ foto: strawberry creamcheese ]</div><div class="card-body">
+      <span class="tag">FAVORITO</span><h3>Strawberry Creamcheese</h3>
+      <p>Tres leches relleno de fresas con crema y cream cheese.</p>
+      <div class="price">Desde $80</div></div></div>
+    <div class="card"><div class="card-img">[ foto: chocolate deluxe ]</div><div class="card-body">
+      <span class="tag">ESPECIAL</span><h3>Chocolate Deluxe</h3>
+      <p>Torta húmeda de chocolate semidulce con almíbar de cocoa, relleno de ganache de dulce de leche o de chocolate.</p>
+      <div class="price">Desde $80</div></div></div>
+    <div class="card"><div class="card-img">[ foto: moca cookie crumble ]</div><div class="card-body">
+      <span class="tag">NUEVO</span><h3>Moca Cookie Crumble</h3>
+      <p>Vainilla húmeda en moca, relleno de mousse de chocolate y crumbles de Oreo.</p>
+      <div class="price">Desde $80</div></div></div>
+  </div>
+
+  <div class="section-head" style="margin-top:52px">
+    <h2>Por docena y más</h2>
+    <p>Perfectos para fiestas, reuniones y convivios</p>
+  </div>
+  <table class="price-table">
+    <tr><th>Producto</th><th style="text-align:right">Precio</th></tr>
+    <tr><td>Mini gelatinas (12 unidades)</td><td>$60</td></tr>
+    <tr><td>Mini flan (24 unidades)</td><td>$50</td></tr>
+    <tr><td>Mini chocoflan (12 unidades)</td><td>$50</td></tr>
+    <tr><td>Cupcakes (12 unidades)</td><td>$50</td></tr>
+    <tr><td>Cake pops redondos (12 unidades)</td><td>$45</td></tr>
+    <tr><td>Popsicle cake pops (12 unidades)</td><td>$60</td></tr>
+    <tr><td>Churrocheesecake (16 unidades)</td><td>$50</td></tr>
+    <tr><td>Mousse de cheesecake en vasito (12)</td><td>$45</td></tr>
+    <tr><td>Mousse de Oreo y pudín (12)</td><td>$35</td></tr>
+    <tr><td>Gelatina mosaico en vasito (12)</td><td>$45</td></tr>
+    <tr><td>Churros con toppings (por box, 1 topping)</td><td>$8 · +$2 extra</td></tr>
+    <tr><td>Porción de pastel — vainilla con dulce de leche</td><td>$8</td></tr>
+    <tr><td>Porción de pastel — triple chocolate especial</td><td>$10</td></tr>
+  </table>
+  <p style="text-align:center;font-size:.82rem;color:#7d8b7b;margin-top:12px">* El precio de los pasteles puede variar según la decoración, el tamaño y el relleno.</p>
+</section>
+
+<div class="gallery-band" id="galeria">
+  <div class="section-head">
+    <h2>Galería</h2>
+    <p>Cada creación es única — síguenos en Instagram @sweet_vanilla2025</p>
+  </div>
+  <div class="gal-grid">
+    <div class="gal-item">pastel corazón verde con coronas</div>
+    <div class="gal-item">flan napolitano con fresas</div>
+    <div class="gal-item">mini flanes en domo</div>
+    <div class="gal-item">pastel tres leches con moños</div>
+    <div class="gal-item">crepa con Nutella y fresa</div>
+    <div class="gal-item">churros con toppings</div>
+  </div>
+</div>
+
+<section id="ordenar">
+  <div class="section-head">
+    <h2>Arma tu pedido</h2>
+    <p>Paso a paso, sin idas y vueltas — tu pedido llega directo a nuestro WhatsApp</p>
+  </div>
+
+  <div class="order-wrap">
+    <div class="progress"><div class="progress-fill" id="prog"></div></div>
+
+    <!-- STEP 1: PRODUCT TYPE -->
+    <div class="ostep" id="s1">
+      <div class="step-title">¿Qué se te antoja?</div>
+      <div class="step-sub">Elige el tipo de producto</div>
+      <div class="options">
+        <div class="opt" onclick="setType('pastel',this)"><div class="opt-name">🎂 Pastel personalizado</div><div class="opt-sub">desde $80</div></div>
+        <div class="opt" onclick="setType('docena',this)"><div class="opt-name">🧁 Por docena</div><div class="opt-sub">minis, cupcakes y más</div></div>
+        <div class="opt" onclick="setType('churros',this)"><div class="opt-name">🥨 Churros con toppings</div><div class="opt-sub">$8 por box</div></div>
+      </div>
+    </div>
+
+    <!-- STEP 2a: CAKE SIZE -->
+    <div class="ostep hidden" id="s2-pastel">
+      <div class="step-title">Elige el tamaño</div>
+      <div class="step-sub">Los precios pueden variar según la decoración</div>
+      <div class="options">
+        <div class="opt" onclick="setSize('Pastel 6\"','$80',80,this)"><div class="opt-name">6 pulgadas</div><div class="opt-sub">8–10 porciones · desde $80</div></div>
+        <div class="opt" onclick="setSize('Pastel 8\"','$100',100,this)"><div class="opt-name">8 pulgadas</div><div class="opt-sub">15–20 porciones · desde $100</div></div>
+        <div class="opt" onclick="setSize('Pastel de corazón 6\"','$85',85,this)"><div class="opt-name">Corazón 6"</div><div class="opt-sub">8–10 porciones · desde $85</div></div>
+      </div>
+    </div>
+
+    <!-- STEP 2b: DOCENA ITEM -->
+    <div class="ostep hidden" id="s2-docena">
+      <div class="step-title">Elige tu producto</div>
+      <div class="step-sub">Precios por paquete</div>
+      <div class="options" style="grid-template-columns:repeat(auto-fit,minmax(160px,1fr))">
+        <div class="opt" onclick="setDocena('Mini gelatinas (12)',60,this)"><div class="opt-name">Mini gelatinas</div><div class="opt-sub">12 · $60</div></div>
+        <div class="opt" onclick="setDocena('Mini flan (24)',50,this)"><div class="opt-name">Mini flan</div><div class="opt-sub">24 · $50</div></div>
+        <div class="opt" onclick="setDocena('Mini chocoflan (12)',50,this)"><div class="opt-name">Mini chocoflan</div><div class="opt-sub">12 · $50</div></div>
+        <div class="opt" onclick="setDocena('Cupcakes (12)',50,this)"><div class="opt-name">Cupcakes</div><div class="opt-sub">12 · $50</div></div>
+        <div class="opt" onclick="setDocena('Cake pops redondos (12)',45,this)"><div class="opt-name">Cake pops</div><div class="opt-sub">12 · $45</div></div>
+        <div class="opt" onclick="setDocena('Popsicle cake pops (12)',60,this)"><div class="opt-name">Popsicle cake pops</div><div class="opt-sub">12 · $60</div></div>
+        <div class="opt" onclick="setDocena('Churrocheesecake (16)',50,this)"><div class="opt-name">Churrocheesecake</div><div class="opt-sub">16 · $50</div></div>
+        <div class="opt" onclick="setDocena('Mousse de cheesecake en vasito (12)',45,this)"><div class="opt-name">Mousse cheesecake</div><div class="opt-sub">12 · $45</div></div>
+        <div class="opt" onclick="setDocena('Mousse de Oreo y pudín (12)',35,this)"><div class="opt-name">Mousse de Oreo</div><div class="opt-sub">12 · $35</div></div>
+        <div class="opt" onclick="setDocena('Gelatina mosaico en vasito (12)',45,this)"><div class="opt-name">Gelatina mosaico</div><div class="opt-sub">12 · $45</div></div>
+      </div>
+    </div>
+
+    <!-- STEP 2c: CHURROS -->
+    <div class="ostep hidden" id="s2-churros">
+      <div class="step-title">Churros con toppings</div>
+      <div class="step-sub">$8 por box con 1 topping · +$2 por topping extra</div>
+      <div class="field"><label>¿Cuántos boxes?</label>
+        <div class="qty-ctrl">
+          <button class="qty-btn" onclick="chQty(-1)">−</button>
+          <span class="qty-num" id="chn">1</span>
+          <button class="qty-btn" onclick="chQty(1)">+</button>
         </div>
-        <div class="hero-notes">
-          <span>✓ Pick up en Shoreline & Lake Forest Park</span>
-          <span>✓ 4 días de anticipación</span>
-        </div>
       </div>
-      <div class="hero-image reveal">
-        <div class="image-frame">
-          <img src="assets/pink-cake.jpeg" alt="Pastel rosado personalizado de Sweet Vanilla" />
-          <div class="floating-card">
-            <strong>Hecho a mano</strong>
-            <span>Con atención a cada detalle</span>
-          </div>
-        </div>
+      <div class="field"><label>Topping incluido</label>
+        <select id="chtop"><option>Nutella</option><option>Leche condensada</option><option>Dulce de leche</option></select>
       </div>
-    </section>
-
-    <section class="trust-strip">
-      <span>Pasteles personalizados</span><span>•</span><span>Tres leches</span><span>•</span><span>Postres por docena</span><span>•</span><span>Pedidos por WhatsApp</span>
-    </section>
-
-    <section class="section" id="menu">
-      <div class="section-heading reveal">
-        <span class="eyebrow">Nuestro menú</span>
-        <h2>Sabores que se convierten en recuerdos</h2>
-        <p>Todos los pasteles se preparan frescos y pueden personalizarse según tu celebración.</p>
+      <div class="field"><label>Toppings extra (+$2 c/u)</label>
+        <select id="chextra"><option value="0">Ninguno</option><option value="1">1 extra (+$2)</option><option value="2">2 extras (+$4)</option></select>
       </div>
+      <div style="text-align:center"><button class="btn btn-primary" onclick="churrosNext()">Continuar →</button></div>
+    </div>
 
-      <div class="flavor-grid">
-        <article class="flavor-card reveal">
-          <span class="tag">Clásico</span>
-          <h3>Tradicional</h3>
-          <p>Pastel de vainilla húmedo en tres leches al estilo Sweet Vanilla, relleno de dulce de leche.</p>
-          <small>Coctel de frutas +$5</small>
-        </article>
-        <article class="flavor-card reveal">
-          <span class="tag">Favorito</span>
-          <h3>Strawberry Creamcheese</h3>
-          <p>Tres leches con relleno de fresas, crema y cream cheese.</p>
-        </article>
-        <article class="flavor-card reveal">
-          <span class="tag">Intenso</span>
-          <h3>Chocolate Deluxe</h3>
-          <p>Torta húmeda de chocolate semidulce con almíbar de cocoa y ganache.</p>
-        </article>
-        <article class="flavor-card reveal">
-          <span class="tag">Especial</span>
-          <h3>Moca Cookie Crumble</h3>
-          <p>Vainilla húmeda en moca, mousse de chocolate y crumbles de Oreo.</p>
-        </article>
+    <!-- STEP 3: FLAVOR (cakes only) -->
+    <div class="ostep hidden" id="s3">
+      <div class="step-title">Elige el sabor</div>
+      <div class="step-sub">Todos al estilo Sweet Vanilla</div>
+      <div class="options">
+        <div class="opt" onclick="setFlavor('Tradicional',this)"><div class="opt-name">Tradicional</div><div class="opt-sub">tres leches + dulce de leche</div></div>
+        <div class="opt" onclick="setFlavor('Strawberry Creamcheese',this)"><div class="opt-name">Strawberry Creamcheese</div><div class="opt-sub">fresas con crema + cream cheese</div></div>
+        <div class="opt" onclick="setFlavor('Chocolate Deluxe',this)"><div class="opt-name">Chocolate Deluxe</div><div class="opt-sub">chocolate + ganache</div></div>
+        <div class="opt" onclick="setFlavor('Moca Cookie Crumble',this)"><div class="opt-name">Moca Cookie Crumble</div><div class="opt-sub">moca + mousse + Oreo</div></div>
       </div>
-
-      <div class="price-layout">
-        <div class="price-card reveal">
-          <h3>Pasteles</h3>
-          <div class="price-row"><span>Pastel 6” <small>8–10 porciones</small></span><strong>Desde $80</strong></div>
-          <div class="price-row"><span>Pastel 8” <small>15–20 porciones</small></span><strong>Desde $100</strong></div>
-          <div class="price-row"><span>Pastel corazón 6” <small>8–10 porciones</small></span><strong>Desde $85</strong></div>
-          <p class="fine-print">El precio final puede variar según decoración, tamaño y relleno.</p>
-        </div>
-        <div class="price-card reveal">
-          <h3>Postres</h3>
-          <div class="price-row"><span>Mini gelatinas (12)</span><strong>$60</strong></div>
-          <div class="price-row"><span>Mini flan (24)</span><strong>$50</strong></div>
-          <div class="price-row"><span>Mini chocoflan (12)</span><strong>$50</strong></div>
-          <div class="price-row"><span>Cupcakes (12)</span><strong>$50</strong></div>
-          <div class="price-row"><span>Cake pops redondos (12)</span><strong>$45</strong></div>
-          <div class="price-row"><span>Popsicle cake pops (12)</span><strong>$60</strong></div>
-          <div class="price-row"><span>Churro cheesecake (16)</span><strong>$50</strong></div>
-          <div class="price-row"><span>Mousse cheesecake en vasito (12)</span><strong>$45</strong></div>
-          <div class="price-row"><span>Mousse Oreo y pudín (12)</span><strong>$35</strong></div>
-          <div class="price-row"><span>Gelatina mosaico en vasito (12)</span><strong>$45</strong></div>
-        </div>
-        <div class="price-card reveal full-span">
-          <h3>Especiales</h3>
-          <div class="price-row"><span>Churros con toppings <small>1 topping: Nutella, leche condensada o dulce de leche · topping extra +$2</small></span><strong>$8 / box</strong></div>
-          <div class="price-row"><span>Porción de pastel de vainilla <small>Con dulce de leche</small></span><strong>$8</strong></div>
-          <div class="price-row"><span>Porción triple chocolate especial</span><strong>$10</strong></div>
-          <div class="price-row"><span>Crepas dulces <small>Cada dos viernes</small></span><strong>Por confirmar</strong></div>
-          <div class="price-row"><span>Fresas con crema <small>De temporada</small></span><strong>Por confirmar</strong></div>
-        </div>
+      <div id="filling-extra" class="hidden" style="margin-top:14px">
+        <div class="field"><label id="fill-label"></label><select id="fillsel"></select></div>
+        <div style="text-align:center;margin-top:6px"><button class="btn btn-primary" onclick="flavorNext()">Continuar →</button></div>
       </div>
-    </section>
+    </div>
 
-    <section class="section gallery-section" id="galeria">
-      <div class="section-heading reveal">
-        <span class="eyebrow">Galería</span>
-        <h2>Diseños llenos de personalidad</h2>
+    <!-- STEP 4: DECORACIÓN -->
+    <div class="ostep hidden" id="s4">
+      <div class="step-title">Decoración e inspiración</div>
+      <div class="step-sub">Cuéntanos cómo lo imaginas</div>
+      <div class="field"><label>Describe la decoración que te gustaría</label>
+        <textarea id="deco" rows="3" placeholder="Ej: estilo vintage en verde sage, con moños rosas, perlas y 'Happy Birthday' en topper plateado"></textarea>
       </div>
-      <div class="gallery-grid">
-        <figure class="gallery-item tall reveal"><img src="assets/birthday-cake.jpeg" alt="Pastel blanco con letras de cumpleaños coloridas" /></figure>
-        <figure class="gallery-item reveal"><img src="assets/dinosaur-cake.png" alt="Pastel infantil con dinosaurio verde" /></figure>
-        <figure class="gallery-item reveal"><img src="assets/pink-cake.jpeg" alt="Pastel rosado estilo vintage" /></figure>
-        <figure class="gallery-item wide reveal"><img src="assets/mocha-cake.jpeg" alt="Pastel de moca con decoración de crema" /></figure>
+      <div class="field"><label>¿Para qué ocasión es?</label>
+        <input id="ocasion" placeholder="Ej: cumpleaños, baby shower, aniversario">
       </div>
-      <div class="center"><a class="button button-ghost" href="https://instagram.com/sweet_vanilla2025" target="_blank" rel="noopener">Ver más en Instagram</a></div>
-    </section>
+      <div class="notice">📷 <strong>Fotos de inspiración:</strong> al enviar tu pedido por WhatsApp, adjunta tus fotos en el chat. Las imágenes se toman como inspiración para la elaboración del producto, no como garantía de una copia exacta.</div>
+      <div style="text-align:center;margin-top:18px"><button class="btn btn-primary" onclick="goStep('s5')">Continuar →</button></div>
+    </div>
 
-    <section class="section order-section" id="ordenar">
-      <div class="section-heading reveal">
-        <span class="eyebrow">Pedido guiado</span>
-        <h2>Cuéntanos qué quieres celebrar</h2>
-        <p>Completa los pasos y enviaremos tu resumen directamente a WhatsApp.</p>
+    <!-- STEP 5: DATE -->
+    <div class="ostep hidden" id="s5">
+      <div class="step-title">Fecha de entrega</div>
+      <div class="step-sub">Entregamos sábados y domingos · pedidos con mínimo 4 días de anticipación</div>
+      <div class="options" id="dates"></div>
+      <div class="notice warn">⏰ Cupo limitado: máximo 5 pedidos por día de entrega. Tu fecha queda confirmada cuando recibas respuesta por WhatsApp y se realice el anticipo del 50%.</div>
+    </div>
+
+    <!-- STEP 6: CONTACT -->
+    <div class="ostep hidden" id="s6">
+      <div class="step-title">Tus datos</div>
+      <div class="step-sub">Para confirmar tu pedido por WhatsApp</div>
+      <div class="field"><label>Nombre completo</label><input id="cname" placeholder="Tu nombre"></div>
+      <div class="field"><label>Teléfono (WhatsApp)</label><input id="cphone" type="tel" placeholder="(206) 555-0000"></div>
+      <div class="field"><label>Notas adicionales (opcional)</label><textarea id="cnotes" rows="2" placeholder="Alergias, dedicatoria, etc."></textarea></div>
+      <div style="text-align:center;margin-top:16px"><button class="btn btn-primary" onclick="buildSummary()">Ver resumen →</button></div>
+    </div>
+
+    <!-- STEP 7: SUMMARY -->
+    <div class="ostep hidden" id="s7">
+      <div class="step-title">Resumen de tu pedido</div>
+      <div class="step-sub">Revisa y envía — Diana te confirmará por WhatsApp</div>
+      <div class="summary-box" id="sumbox"></div>
+      <div class="notice">💰 <strong>Anticipo:</strong> se requiere el 50% (no reembolsable) para confirmar tu pedido. El resto se paga el día de la entrega. Al ordenar aceptas nuestras <a href="#politicas" style="color:var(--pine)">políticas</a>.</div>
+      <div style="text-align:center;margin-top:18px">
+        <a class="btn btn-primary" id="wa-send" href="#" target="_blank">📲 Enviar pedido por WhatsApp</a>
       </div>
+      <div style="text-align:center;margin-top:10px"><button class="btn btn-ghost" style="margin:0" onclick="resetOrder()">Empezar de nuevo</button></div>
+    </div>
 
-      <div class="order-shell reveal">
-        <div class="progress-wrap">
-          <div class="progress-bar"><span id="progressFill"></span></div>
-          <span id="progressText">Paso 1 de 7</span>
-        </div>
+    <div class="order-nav" id="backnav" style="display:none">
+      <button class="btn btn-ghost" style="margin:0" onclick="goBack()">← Atrás</button>
+      <span></span>
+    </div>
+  </div>
+</section>
 
-        <form id="orderForm">
-          <section class="form-step active" data-step="1">
-            <h3>¿Qué deseas ordenar?</h3>
-            <div class="choice-grid" id="productChoices"></div>
-          </section>
+<section id="politicas">
+  <div class="section-head"><h2>Políticas de Sweet Vanilla</h2></div>
+  <div class="policies">
+    <h3>1. Anticipo y pago</h3>
+    <ul><li>Se requiere un 50% de anticipo (no reembolsable) para confirmar tu pedido.</li>
+    <li>El restante debe pagarse el día de la entrega del producto.</li></ul>
+    <h3>2. Plazo de entrega</h3>
+    <ul><li>Los pedidos deben realizarse con al menos 4 días de anticipación a la fecha de entrega deseada.</li>
+    <li>Se establecerá un horario para recoger tu pedido; en caso de exceder 20 minutos de espera se cobrará una tarifa adicional.</li></ul>
+    <h3>3. Cancelaciones y reagendados</h3>
+    <ul><li>No hay devoluciones del depósito por ningún motivo en caso de cancelación.</li>
+    <li>Las cancelaciones solo son aceptadas con al menos 3 días de anticipación a la fecha de entrega.</li>
+    <li>Con cancelación anticipada, el pedido puede reagendarse para una fecha posterior, sujeto a disponibilidad.</li>
+    <li>En caso de cancelación y reagendado a tiempo, puedes cambiar tu producto por uno del mismo precio, sujeto a disponibilidad.</li></ul>
+    <h3>4. Imágenes de referencia</h3>
+    <ul><li>Todas las imágenes proporcionadas por el cliente se toman como inspiración para la elaboración del producto, no como garantía de una copia exacta.</li></ul>
+    <h3>5. Responsabilidad</h3>
+    <ul><li>Sweet Vanilla se compromete a entregar el producto en perfectas condiciones y en su empaque apropiado para su transportación.</li>
+    <li>No somos responsables por daños o pérdidas causadas por la cancelación o reagendado de un pedido.</li></ul>
+    <h3>6. Entrega y manipulación del producto</h3>
+    <ul><li>Una vez entregado el producto, no nos hacemos responsables por daños o deterioros causados por transporte o manipulación inadecuada, condiciones climáticas adversas, o entorno y almacenamiento inadecuado.</li></ul>
+    <p style="margin-top:16px;font-size:.86rem;color:#7d8b7b">Al realizar un pedido, aceptas estos términos y condiciones establecidos por Sweet Vanilla. Si tienes alguna pregunta, no dudes en comunicarte con nosotros.</p>
+  </div>
+</section>
 
-          <section class="form-step" data-step="2">
-            <h3>Elige tamaño o cantidad</h3>
-            <div class="choice-grid" id="sizeChoices"></div>
-          </section>
+<section id="recoger">
+  <div class="pickup-grid">
+    <div class="map-ph">[ mapa: zona de pick up<br>Shoreline &amp; Lake Forest Park ]</div>
+    <div>
+      <h2>Recoge tu pedido</h2>
+      <ul>
+        <li><strong>Solo pick up</strong> — Shoreline &amp; Lake Forest Park, WA</li>
+        <li>Entregas los sábados y domingos</li>
+        <li>Ordena con mínimo 4 días de anticipación</li>
+        <li>Te confirmamos hora y punto de entrega por WhatsApp</li>
+      </ul>
+      <a class="btn btn-primary" style="margin-top:14px" href="https://wa.me/12065716064" target="_blank">Escríbenos por WhatsApp</a>
+    </div>
+  </div>
+</section>
 
-          <section class="form-step" data-step="3">
-            <h3>Elige el sabor</h3>
-            <div class="choice-grid" id="flavorChoices"></div>
-            <div id="extraOptions" class="extra-options"></div>
-          </section>
+<footer>
+  <div class="logo-mark">Sv</div>
+  <div style="font-family:'Fraunces',serif;font-size:1.25rem">Sweet Vanilla</div>
+  <p style="margin-top:8px;font-size:.88rem">Repostería artesanal · Shoreline &amp; Lake Forest Park, WA</p>
+  <a class="wa-btn" href="https://wa.me/12065716064" target="_blank">WhatsApp · (206) 571-6064</a>
+  <p style="margin-top:10px;font-size:.88rem">Instagram: <a href="https://instagram.com/sweet_vanilla2025" target="_blank">@sweet_vanilla2025</a></p>
+  <div class="fine">Sitio por Salt &amp; Tide Creative · salttidecreative.com</div>
+</footer>
 
-          <section class="form-step" data-step="4">
-            <h3>Decoración e inspiración</h3>
-            <label>Describe el estilo, colores y texto
-              <textarea id="decoration" rows="5" placeholder="Ej. estilo vintage rosado, moños dorados y texto ‘Feliz cumpleaños’"></textarea>
-            </label>
-            <label>Fotos de inspiración (hasta 3)
-              <input id="inspiration" type="file" accept="image/*" multiple />
-            </label>
-            <p class="notice">Las imágenes se toman como inspiración, no como garantía de una copia exacta.</p>
-          </section>
+<script>
+const WA_NUMBER = "12065716064";
+const order = {type:null,item:null,base:0,qty:1,flavor:null,filling:null,deco:'',ocasion:'',date:null,name:'',phone:'',notes:'',extraCost:0};
+let history = ['s1'];
 
-          <section class="form-step" data-step="5">
-            <h3>Selecciona fecha de entrega</h3>
-            <label>Fecha de pick up
-              <input id="pickupDate" type="date" required />
-            </label>
-            <p class="notice">Solo sábados y domingos. Se requieren al menos 4 días de anticipación.</p>
-            <div id="dateStatus" class="date-status"></div>
-          </section>
+function show(id){
+  document.querySelectorAll('.ostep').forEach(s=>s.classList.add('hidden'));
+  document.getElementById(id).classList.remove('hidden');
+  document.getElementById('backnav').style.display = id==='s1' ? 'none':'flex';
+  const progMap = {s1:14,'s2-pastel':28,'s2-docena':28,'s2-churros':28,s3:42,s4:56,s5:70,s6:84,s7:100};
+  document.getElementById('prog').style.width = (progMap[id]||14)+'%';
+}
+function goStep(id){ history.push(id); show(id); }
+function goBack(){ if(history.length>1){ history.pop(); show(history[history.length-1]); } }
+function clearSel(container){ container.querySelectorAll('.opt').forEach(o=>o.classList.remove('selected')); }
 
-          <section class="form-step" data-step="6">
-            <h3>Tus datos</h3>
-            <div class="field-grid">
-              <label>Nombre completo<input id="customerName" type="text" required /></label>
-              <label>Teléfono / WhatsApp<input id="customerPhone" type="tel" required /></label>
-            </div>
-            <label>Notas adicionales<textarea id="notes" rows="3" placeholder="Alergias, mensaje especial, hora preferida, etc."></textarea></label>
-            <label class="checkbox"><input id="terms" type="checkbox" required /> <span>Acepto las políticas de pedidos, cancelación y manejo del producto.</span></label>
-          </section>
+function setType(t,el){
+  order.type=t; clearSel(el.parentElement); el.classList.add('selected');
+  setTimeout(()=>{ goStep(t==='pastel'?'s2-pastel': t==='docena'?'s2-docena':'s2-churros'); },200);
+}
+function setSize(name,label,price,el){
+  order.item=name; order.base=price; order.qty=1;
+  clearSel(el.parentElement); el.classList.add('selected');
+  setTimeout(()=>goStep('s3'),200);
+}
+function setDocena(name,price,el){
+  order.item=name; order.base=price; order.qty=1; order.flavor=null; order.filling=null;
+  clearSel(el.parentElement); el.classList.add('selected');
+  setTimeout(()=>goStep('s5'),200);
+}
+function chQty(d){ order.qty=Math.max(1,Math.min(10,order.qty+d)); document.getElementById('chn').textContent=order.qty; }
+function churrosNext(){
+  const top=document.getElementById('chtop').value;
+  const ex=parseInt(document.getElementById('chextra').value);
+  order.item=`Churros con toppings (${order.qty} box${order.qty>1?'es':''})`;
+  order.base=8; order.flavor=top; order.extraCost=ex*2;
+  order.filling = ex>0 ? `${ex} topping(s) extra` : null;
+  goStep('s5');
+}
+function setFlavor(f,el){
+  order.flavor=f; clearSel(el.parentElement); el.classList.add('selected');
+  const box=document.getElementById('filling-extra');
+  const sel=document.getElementById('fillsel');
+  const lab=document.getElementById('fill-label');
+  order.extraCost=0; order.filling=null;
+  if(f==='Tradicional'){
+    lab.textContent='Relleno';
+    sel.innerHTML='<option value="dl">Dulce de leche (incluido)</option><option value="fruta">Coctel de frutas (+$5)</option>';
+    box.classList.remove('hidden');
+  } else if(f==='Chocolate Deluxe'){
+    lab.textContent='Elige tu ganache';
+    sel.innerHTML='<option>Ganache de dulce de leche</option><option>Ganache de chocolate</option>';
+    box.classList.remove('hidden');
+  } else {
+    box.classList.add('hidden');
+    setTimeout(()=>goStep('s4'),200);
+  }
+}
+function flavorNext(){
+  const sel=document.getElementById('fillsel');
+  if(order.flavor==='Tradicional'){
+    if(sel.value==='fruta'){ order.filling='Coctel de frutas (+$5)'; order.extraCost=5; }
+    else order.filling='Dulce de leche';
+  } else order.filling=sel.options[sel.selectedIndex].text;
+  goStep('s4');
+}
 
-          <section class="form-step" data-step="7">
-            <h3>Revisa y envía tu pedido</h3>
-            <div class="final-review" id="finalReview"><p>Tu resumen aparecerá aquí antes de abrir WhatsApp.</p></div>
-            <p class="notice">Al enviar, se abrirá WhatsApp con tu pedido organizado. Diana responderá para confirmar disponibilidad, total final y anticipo del 50%.</p>
-          </section>
+/* DATE PICKER: next weekends, ≥4 days out, with 5-order capacity cap. */
+const DAILY_CAPACITY = 5;
+// Temporary static capacity ledger. Replace with Airtable/Sheets/API before production intake.
+const bookedDates = {
+  '2026-08-15': 5
+};
+function dateKey(d){ return d.toISOString().slice(0,10); }
+function buildDates(){
+  const container=document.getElementById('dates'); container.innerHTML='';
+  const today=new Date(); today.setHours(0,0,0,0);
+  const min=new Date(today); min.setDate(min.getDate()+4);
+  const dias=['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
+  const meses=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+  let d=new Date(today), found=0;
+  while(found<8){
+    d.setDate(d.getDate()+1);
+    if(d.getDay()===6||d.getDay()===0){
+      const key=dateKey(d);
+      const used=bookedDates[key] || 0;
+      const hasNotice=d>=min;
+      const hasCapacity=used < DAILY_CAPACITY;
+      const ok=hasNotice && hasCapacity;
+      const el=document.createElement('div');
+      el.className='opt'+(ok?'':' disabled');
+      const status = !hasNotice ? 'muy pronto' : !hasCapacity ? 'sin cupo' : `${DAILY_CAPACITY-used} cupo(s)`;
+      el.innerHTML=`<div class="opt-name">${dias[d.getDay()]}</div><div class="opt-sub">${d.getDate()} ${meses[d.getMonth()]} · ${status}</div>`;
+      if(ok){
+        const iso=`${dias[d.getDay()]} ${d.getDate()} de ${meses[d.getMonth()]} (${key})`;
+        el.onclick=function(){ order.date=iso; clearSel(container); this.classList.add('selected'); setTimeout(()=>goStep('s6'),200); };
+      } else {
+        el.style.opacity='.38'; el.style.cursor='not-allowed';
+      }
+      container.appendChild(el); found++;
+    }
+  }
+}
+buildDates();
 
-          <div class="form-navigation">
-            <button class="button button-ghost" type="button" id="prevBtn">Atrás</button>
-            <button class="button" type="button" id="nextBtn">Continuar</button>
-          </div>
-        </form>
+function money(n){ return '$'+n; }
+function calcTotal(){
+  if(order.type==='churros') return order.base*order.qty + order.extraCost*order.qty;
+  return order.base + order.extraCost;
+}
+function buildSummary(){
+  order.name=document.getElementById('cname').value.trim();
+  order.phone=document.getElementById('cphone').value.trim();
+  order.notes=document.getElementById('cnotes').value.trim();
+  if(!order.name||!order.phone){ alert('Por favor escribe tu nombre y teléfono para continuar.'); return; }
+  order.deco=document.getElementById('deco')?document.getElementById('deco').value.trim():'';
+  order.ocasion=document.getElementById('ocasion')?document.getElementById('ocasion').value.trim():'';
+  const rows=[];
+  rows.push(['Producto',order.item]);
+  if(order.flavor) rows.push([order.type==='churros'?'Topping':'Sabor',order.flavor]);
+  if(order.filling) rows.push([order.type==='churros'?'Extras':'Relleno',order.filling]);
+  if(order.deco) rows.push(['Decoración',order.deco]);
+  if(order.ocasion) rows.push(['Ocasión',order.ocasion]);
+  rows.push(['Entrega',order.date]);
+  rows.push(['Cliente',order.name]);
+  rows.push(['WhatsApp',order.phone]);
+  if(order.notes) rows.push(['Notas',order.notes]);
+  const total=calcTotal();
+  let html=rows.map(r=>`<div class="row"><b>${r[0]}</b><span style="text-align:right;max-width:60%">${r[1]}</span></div>`).join('');
+  html+=`<div class="row total-row"><b>Total estimado*</b><span>${money(total)}</span></div>`;
+  html+=`<div style="font-size:.76rem;color:#7d8b7b;margin-top:8px">* El precio final puede variar según la decoración. Diana te confirmará el total por WhatsApp.</div>`;
+  document.getElementById('sumbox').innerHTML=html;
 
-        <aside class="order-summary">
-          <span class="eyebrow">Resumen</span>
-          <div id="summaryContent"><p>Selecciona un producto para comenzar.</p></div>
-          <div class="summary-total">
-            <span>Total estimado</span><strong id="estimatedTotal">$0</strong>
-          </div>
-          <div class="summary-deposit">
-            <span>Anticipo estimado (50%)</span><strong id="depositTotal">$0</strong>
-          </div>
-          <p class="fine-print">La decoración personalizada puede modificar el precio final. Diana confirmará disponibilidad y total por WhatsApp.</p>
-        </aside>
-      </div>
-    </section>
-
-    <section class="section policies" id="politicas">
-      <div class="section-heading reveal">
-        <span class="eyebrow">Antes de ordenar</span>
-        <h2>Políticas claras para una experiencia dulce</h2>
-      </div>
-      <div class="policy-grid">
-        <article class="policy-card reveal"><span>01</span><h3>Anticipo y pago</h3><p>Se requiere un 50% de anticipo no reembolsable para confirmar. El saldo se paga el día del pick up.</p></article>
-        <article class="policy-card reveal"><span>02</span><h3>Anticipación</h3><p>Los pedidos deben realizarse con al menos 4 días de anticipación.</p></article>
-        <article class="policy-card reveal"><span>03</span><h3>Cancelaciones</h3><p>Se aceptan con 3 días o más. El depósito no se devuelve; el reagendado queda sujeto a disponibilidad.</p></article>
-        <article class="policy-card reveal"><span>04</span><h3>Pick up</h3><p>Solo recogida en Shoreline o Lake Forest Park. Esperas mayores a 20 minutos pueden generar una tarifa adicional.</p></article>
-        <article class="policy-card reveal"><span>05</span><h3>Inspiración</h3><p>Las fotos sirven como referencia creativa, pero no garantizan una réplica exacta.</p></article>
-        <article class="policy-card reveal"><span>06</span><h3>Manejo del producto</h3><p>Después de la entrega, no somos responsables por daños causados por transporte, clima o almacenamiento inadecuado.</p></article>
-      </div>
-    </section>
-
-    <section class="section contact-section" id="contacto">
-      <div class="section-heading reveal">
-        <span class="eyebrow">Contacto / pick up</span>
-        <h2>Ordena por WhatsApp y recoge localmente</h2>
-        <p>Sweet Vanilla trabaja solo con pick up en Shoreline y Lake Forest Park. La ubicación exacta se comparte al confirmar tu pedido.</p>
-      </div>
-      <div class="contact-grid">
-        <article class="policy-card reveal"><span>WA</span><h3>WhatsApp</h3><p>Envía tu pedido completo con el formulario para que Diana pueda confirmar más rápido.</p><a class="button button-small" href="https://wa.me/12065716064" target="_blank" rel="noopener">Abrir WhatsApp</a></article>
-        <article class="policy-card reveal"><span>IG</span><h3>Instagram</h3><p>Ve diseños recientes, inspiración y anuncios de sabores especiales.</p><a class="button button-small button-ghost" href="https://instagram.com/sweet_vanilla2025" target="_blank" rel="noopener">@sweet_vanilla2025</a></article>
-        <article class="policy-card reveal"><span>📍</span><h3>Zona de recogida</h3><p>Shoreline & Lake Forest Park, WA. No hay entregas por ahora.</p></article>
-      </div>
-    </section>
-
-    <section class="section faq" id="faq">
-      <div class="section-heading reveal"><span class="eyebrow">Preguntas frecuentes</span><h2>Todo lo que necesitas saber</h2></div>
-      <div class="faq-list">
-        <details><summary>¿Hacen entregas?</summary><p>Actualmente todos los pedidos son solo para pick up en Shoreline o Lake Forest Park.</p></details>
-        <details><summary>¿Cuánto tiempo de anticipación necesito?</summary><p>Un mínimo de 4 días. Recomendamos reservar antes para fechas populares.</p></details>
-        <details><summary>¿El anticipo es reembolsable?</summary><p>No. El 50% confirma tu espacio y cubre planificación e insumos.</p></details>
-        <details><summary>¿Pueden copiar exactamente una foto?</summary><p>La usamos como inspiración. Cada pastel es artesanal y tendrá detalles únicos.</p></details>
-        <details><summary>¿Cómo se paga?</summary><p>Diana confirmará por WhatsApp el método disponible para el anticipo y el saldo.</p></details>
-      </div>
-    </section>
-
-    <section class="instagram-cta">
-      <div><span class="eyebrow">Síguenos</span><h2>@sweet_vanilla2025</h2><p>Nuevos diseños, sabores y fechas disponibles.</p></div>
-      <a class="button" href="https://instagram.com/sweet_vanilla2025" target="_blank" rel="noopener">Abrir Instagram</a>
-    </section>
-  </main>
-
-  <footer>
-    <div class="footer-brand"><img src="assets/logo.jpeg" alt="Sweet Vanilla" /><div><strong>Sweet Vanilla</strong><p>Repostería artesanal para momentos inolvidables.</p></div></div>
-    <div><strong>Contacto</strong><a href="https://wa.me/12065716064" target="_blank" rel="noopener">WhatsApp</a><a href="https://instagram.com/sweet_vanilla2025" target="_blank" rel="noopener">Instagram</a></div>
-    <div><strong>Pick up</strong><p>Shoreline & Lake Forest Park, WA</p><p>Ubicación exacta al confirmar</p></div>
-    <p class="copyright">© 2026 Sweet Vanilla. Sitio creado por Salt & Tide Creative.</p>
-  </footer>
-
-  <a class="whatsapp-float" href="https://wa.me/12065716064" target="_blank" rel="noopener" aria-label="Abrir WhatsApp">✆</a>
-  <div id="toast" class="toast" role="status"></div>
-  <script src="script.js"></script>
+  let msg=`🧁 NUEVO PEDIDO — Sweet Vanilla\n`;
+  msg+=`Producto: ${order.item}\n`;
+  if(order.flavor) msg+=`${order.type==='churros'?'Topping':'Sabor'}: ${order.flavor}\n`;
+  if(order.filling) msg+=`${order.type==='churros'?'Extras':'Relleno'}: ${order.filling}\n`;
+  if(order.deco) msg+=`Decoración: ${order.deco}\n`;
+  if(order.ocasion) msg+=`Ocasión: ${order.ocasion}\n`;
+  msg+=`Entrega: ${order.date}\n`;
+  msg+=`Cliente: ${order.name}\n`;
+  msg+=`Tel: ${order.phone}\n`;
+  if(order.notes) msg+=`Notas: ${order.notes}\n`;
+  msg+=`Total estimado: ${money(calcTotal())}\n`;
+  msg+=`— Enviado desde el sitio web. Adjunto mis fotos de inspiración a continuación 📷`;
+  document.getElementById('wa-send').href=`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+  goStep('s7');
+}
+function resetOrder(){
+  Object.assign(order,{type:null,item:null,base:0,qty:1,flavor:null,filling:null,deco:'',ocasion:'',date:null,name:'',phone:'',notes:'',extraCost:0});
+  document.querySelectorAll('.opt').forEach(o=>o.classList.remove('selected'));
+  document.getElementById('chn').textContent='1';
+  history=['s1']; show('s1'); buildDates();
+}
+</script>
 </body>
 </html>
